@@ -57,4 +57,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.9.20")
+
+    // Sqlite
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
 }

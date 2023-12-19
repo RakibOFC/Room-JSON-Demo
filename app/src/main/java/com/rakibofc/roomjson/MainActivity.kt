@@ -3,7 +3,6 @@ package com.rakibofc.roomjson
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
@@ -18,6 +17,12 @@ class MainActivity : AppCompatActivity() {
 
         // Get all data
         getAllQuranData(quranRepository)
+
+        // Insert sample word data
+        insertSampleWordData(quranRepository)
+
+        // Get all word details
+        getWordDetailsAsJson(quranRepository)
     }
 
     private fun getAllQuranData(quranRepository: QuranRepository) = runBlocking {
@@ -32,6 +37,18 @@ class MainActivity : AppCompatActivity() {
                     Log.e("TAG", "WordNo: ${wordInfo.wordNo}, Word: ${wordInfo.word}")
                 }
             }
+        }
+    }
+
+    private fun getWordDetailsAsJson(quranRepository: QuranRepository) = runBlocking {
+        Log.e("TAG", "getWordDetailsAsJson: ${quranRepository.getWordDetailsAsJsonString()}")
+
+
+        for (ayahInfo in quranRepository.getWordDetailsAsJson().ayatInfos) {
+            Log.e("TAG", "AyahInfo: ${ayahInfo.ayatNo}")
+
+            for (wordInfo in ayahInfo.wordInfos)
+                Log.e("TAG", "WordNo: ${wordInfo.wordNo}, Word: ${wordInfo.word}")
         }
     }
 
@@ -68,5 +85,21 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         )
+    }
+
+    private fun insertSampleWordData(quranRepository: QuranRepository) = runBlocking {
+
+        val wordDetailsList: MutableList<WordDetails> = mutableListOf()
+
+        wordDetailsList.add(WordDetails(1, 1, 1, 1, "Bismi"))
+        wordDetailsList.add(WordDetails(2, 1, 1, 2, "Allahi"))
+        wordDetailsList.add(WordDetails(3, 1, 1, 3, "Ar-Rahmani"))
+        wordDetailsList.add(WordDetails(4, 1, 1, 4, "Ar-Raahim"))
+        wordDetailsList.add(WordDetails(5, 1, 2, 1, "Al hamdu"))
+        wordDetailsList.add(WordDetails(6, 1, 2, 2, "lillahi"))
+
+        for (wordDetails in wordDetailsList) {
+            quranRepository.insertWordData(wordDetails)
+        }
     }
 }

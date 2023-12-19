@@ -14,6 +14,7 @@ object DatabaseProvider {
                 context.applicationContext,
                 AppDatabase::class.java, "app_database"
             )
+                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()
         }
