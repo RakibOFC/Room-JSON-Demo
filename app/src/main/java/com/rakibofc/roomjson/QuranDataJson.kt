@@ -14,6 +14,9 @@ data class AyatInfoJson(
     @SerializedName("ayat_no")
     val ayatNo: Int,
 
+    @SerializedName("ayat_meaning")
+    val ayatMeaning: String,
+
     @SerializedName("wordInfos")
     val wordInfos: List<WordInfoJson>
 )

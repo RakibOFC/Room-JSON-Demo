@@ -14,7 +14,7 @@ interface QuranDataDao {
     suspend fun getAllQuranData(): List<QuranDataEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertWordData(wordDetails: WordDetails)
+    fun insertWordData(wordDetails: WordDetails)
 
     @Query(
         """

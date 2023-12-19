@@ -45,7 +45,9 @@ class MainActivity : AppCompatActivity() {
 
 
         for (ayahInfo in quranRepository.getWordDetailsAsJson().ayatInfos) {
+
             Log.e("TAG", "AyahInfo: ${ayahInfo.ayatNo}")
+            Log.e("TAG", "AyahMean: ${ayahInfo.ayatMeaning}")
 
             for (wordInfo in ayahInfo.wordInfos)
                 Log.e("TAG", "WordNo: ${wordInfo.wordNo}, Word: ${wordInfo.word}")
@@ -91,12 +93,17 @@ class MainActivity : AppCompatActivity() {
 
         val wordDetailsList: MutableList<WordDetails> = mutableListOf()
 
-        wordDetailsList.add(WordDetails(1, 1, 1, 1, "Bismi"))
-        wordDetailsList.add(WordDetails(2, 1, 1, 2, "Allahi"))
-        wordDetailsList.add(WordDetails(3, 1, 1, 3, "Ar-Rahmani"))
-        wordDetailsList.add(WordDetails(4, 1, 1, 4, "Ar-Raahim"))
-        wordDetailsList.add(WordDetails(5, 1, 2, 1, "Al hamdu"))
-        wordDetailsList.add(WordDetails(6, 1, 2, 2, "lillahi"))
+        wordDetailsList.add(WordDetails(1, 1, 1, "In the Name of Allah—the Most Compassionate, Most Merciful.", 1, "Bismi"))
+        wordDetailsList.add(WordDetails(2, 1, 1, "In the Name of Allah—the Most Compassionate, Most Merciful.", 2, "Allahi"))
+        wordDetailsList.add(WordDetails(3, 1, 1, "In the Name of Allah—the Most Compassionate, Most Merciful.", 3, "Ar-Rahmani"))
+        wordDetailsList.add(WordDetails(4, 1, 1, "In the Name of Allah—the Most Compassionate, Most Merciful.", 4, "Ar-Raahim"))
+        wordDetailsList.add(WordDetails(5, 1, 2, "All praise is for Allah—Lord of all worlds,", 1, "Al hamdu"))
+        wordDetailsList.add(WordDetails(6, 1, 2, "All praise is for Allah—Lord of all worlds,", 2, "lillahi"))
+
+        wordDetailsList.add(WordDetails(7, 2, 1, "All praise is for Allah—Lord of all worlds,", 1, "Al hamdu"))
+        wordDetailsList.add(WordDetails(8, 2, 1, "All praise is for Allah—Lord of all worlds,", 2, "lillahi"))
+        wordDetailsList.add(WordDetails(9, 2, 2, "All praise is for Allah—Lord of all worlds,", 1, "Al hamdu"))
+        wordDetailsList.add(WordDetails(10, 2, 2, "All praise is for Allah—Lord of all worlds,", 2, "lillahi"))
 
         for (wordDetails in wordDetailsList) {
             quranRepository.insertWordData(wordDetails)

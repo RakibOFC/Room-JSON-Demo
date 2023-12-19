@@ -15,6 +15,9 @@ class WordDetails(
     @ColumnInfo("ayat_no")
     var ayatNo: Int,
 
+    @ColumnInfo("ayat_meaning")
+    var ayatMeaning: String,
+
     @ColumnInfo("word_no")
     var wordNo: Int,
 

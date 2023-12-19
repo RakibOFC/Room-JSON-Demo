@@ -23,10 +23,8 @@ class QuranRepository(context: Context) {
         }
     }
 
-    suspend fun insertWordData(wordDetails: WordDetails) {
-        withContext(Dispatchers.IO) {
-            quranDataDao.insertWordData(wordDetails)
-        }
+    fun insertWordData(wordDetails: WordDetails) {
+        quranDataDao.insertWordData(wordDetails)
     }
 
     fun getWordDetailsAsJsonString(): String {
@@ -36,13 +34,18 @@ class QuranRepository(context: Context) {
     suspend fun getWordDetailsAsJson(): QuranDataJson {
         val wordDetailsList = quranDataDao.getWordDetails()
 
+        Log.e("TAG", "WordDetailsSize: ${wordDetailsList.size}")
+
         val quranDataJson = QuranDataJson(
             surahNo = wordDetailsList.firstOrNull()?.surahNo ?: 0,
             ayatInfos = wordDetailsList.groupBy { it.ayatNo }
-                .map { it ->
+
+                .map { entry ->
+                    val firstWordDetails = entry.value.firstOrNull()
                     AyatInfoJson(
-                        ayatNo = it.key,
-                        wordInfos = it.value.map { WordInfoJson(it.wordNo, it.word) }
+                        ayatNo = entry.key,
+                        ayatMeaning = firstWordDetails?.ayatMeaning ?: "",
+                        wordInfos = entry.value.map { WordInfoJson(it.wordNo, it.word) }
                     )
                 }
         )
