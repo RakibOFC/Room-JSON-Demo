@@ -13,3 +13,14 @@ data class MenuWithSubmenus(
     )
     val submenuList: List<SubmenuEntity>
 )
+
+data class AyatWithWords(
+    @Embedded
+    val ayatDetails: AyatDetails,
+    @Relation(
+        entity = WordDetailsRow::class,
+        parentColumn = "ayat_no",
+        entityColumn = "ayat_no"
+    )
+    val wordDetailsLis: List<WordDetailsRow>
+)

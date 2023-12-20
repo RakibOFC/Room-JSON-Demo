@@ -40,4 +40,15 @@ interface QuranDataDao {
     @Transaction
     @Query("SELECT * FROM menus")
     fun getALlMenusWithSubmenus(): List<MenuWithSubmenus>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAyatDetails(ayatDetails: AyatDetails)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertWordDetails(wordDetailsRow: WordDetailsRow)
+
+    @Transaction
+    @Query("SELECT * FROM ayat_details")
+    fun getAllAyatWithWords(): List<AyatWithWords>
+
 }

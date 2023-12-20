@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import com.google.gson.Gson
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
@@ -16,7 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         quranRepository = QuranRepository(applicationContext)
 
-        // Insert sample data
+        // Surah details: Ayats and Words
+        surahDetails()
+
+        /*// Insert sample data
         insertSampleData()
 
         // Get all data
@@ -29,7 +33,31 @@ class MainActivity : AppCompatActivity() {
         getWordDetailsAsJson()
 
         // insert menu data for test
-        menuData()
+        menuData()*/
+    }
+
+    private fun surahDetails() {
+
+        /*quranRepository.insertAyatDetails(AyatDetails(1, 1, 1))
+        quranRepository.insertAyatDetails(AyatDetails(2, 1, 2))
+
+        quranRepository.insertWordDetails(WordDetailsRow(1, 1, 1, 1, "Bismi"))
+        quranRepository.insertWordDetails(WordDetailsRow(2, 1, 1, 2, "Allahi"))
+        quranRepository.insertWordDetails(WordDetailsRow(3, 1, 1, 3, "Ar-Rahmani"))
+        quranRepository.insertWordDetails(WordDetailsRow(4, 1, 1, 4, "Ar-Raahim"))
+
+        quranRepository.insertWordDetails(WordDetailsRow(5, 1, 2, 1, "Alhamdu"))
+        quranRepository.insertWordDetails(WordDetailsRow(6, 1, 2, 2, "lillahi"))*/
+
+        for (ayatDetails in quranRepository.getAllAyatWithWords()) {
+
+            Log.e("TAG", "surahDetails: ${ayatDetails.ayatDetails.ayatNo}")
+
+            for (wordDetails in ayatDetails.wordDetailsLis) {
+
+                Log.e("TAG", "WordNo: ${wordDetails.wordNo}, Word: ${wordDetails.word}")
+            }
+        }
     }
 
     /**

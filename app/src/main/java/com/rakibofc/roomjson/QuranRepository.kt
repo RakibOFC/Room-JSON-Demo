@@ -39,6 +39,18 @@ class QuranRepository(context: Context) {
         quranDataDao.insertSubmenuEntity(submenu)
     }
 
+    fun insertAyatDetails(ayatDetails: AyatDetails) {
+        quranDataDao.insertAyatDetails(ayatDetails)
+    }
+
+    fun insertWordDetails(wordDetailsRow: WordDetailsRow) {
+        quranDataDao.insertWordDetails(wordDetailsRow)
+    }
+
+    fun getAllAyatWithWords(): List<AyatWithWords> {
+        return quranDataDao.getAllAyatWithWords()
+    }
+
     fun getALlMenusWithSubmenus(): List<MenuWithSubmenus> {
         return quranDataDao.getALlMenusWithSubmenus()
     }
