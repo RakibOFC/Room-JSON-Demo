@@ -31,6 +31,18 @@ class QuranRepository(context: Context) {
         return quranDataDao.getWordDetailsAsJsonString()
     }
 
+    fun insertMenuEntity(menuEntity: MenuEntity) {
+        quranDataDao.insertMenuEntity(menuEntity)
+    }
+
+    fun insertSubmenuEntity(submenu: SubmenuEntity) {
+        quranDataDao.insertSubmenuEntity(submenu)
+    }
+
+    fun getALlMenusWithSubmenus(): List<MenuWithSubmenus> {
+        return quranDataDao.getALlMenusWithSubmenus()
+    }
+
     suspend fun getWordDetailsAsJson(): QuranDataJson {
         val wordDetailsList = quranDataDao.getWordDetails()
 

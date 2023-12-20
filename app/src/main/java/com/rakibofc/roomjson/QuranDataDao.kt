@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 
 @Dao
 interface QuranDataDao {
@@ -29,4 +30,14 @@ interface QuranDataDao {
 
     @Query("SELECT * FROM word_details")
     suspend fun getWordDetails(): List<WordDetails>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMenuEntity(menuEntity: MenuEntity): Long
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertSubmenuEntity(submenu: SubmenuEntity): Long
+
+    @Transaction
+    @Query("SELECT * FROM menus")
+    fun getALlMenusWithSubmenus(): List<MenuWithSubmenus>
 }
